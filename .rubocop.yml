@@ -1,0 +1,90 @@
+require:
+  - rubocop-performance
+  # - rubocop-rspec
+  # - rubocop-rails
+AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+  DisabledByDefault: true
+  Exclude:
+    - 'spec/**/*'
+    - 'node_modules/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'gems/**/*'
+    - 'features/**/*'
+# Security:
+#   Enabled: true
+# Layout/AccessModifierIndentation:
+#   Enabled: true
+Metrics/BlockNesting:
+  Enabled: true
+# Metrics/ParameterLists:
+#   Enabled: true
+Style/AccessModifierDeclarations:
+  Enabled: true
+Style/Alias:
+  Enabled: true
+Style/AndOr:
+  Enabled: true
+Style/ArrayJoin:
+  Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Attr:
+  Enabled: true
+Style/AutoResourceCleanup:
+  Enabled: true
+Style/BarePercentLiterals:
+  Enabled: true
+Style/BeginBlock:
+  Enabled: true
+Style/BlockComments:
+  Enabled: true
+Style/BlockDelimiters:
+  Enabled: true
+Style/BracesAroundHashParameters:
+  Enabled: true
+  EnforcedStyle: context_dependent
+Style/CaseEquality:
+  Enabled: true
+Style/CharacterLiteral:
+  Enabled: true
+Style/ClassCheck:
+  Enabled: true
+Style/ClassMethods:
+  Enabled: true
+Style/ClassVars:
+  Enabled: true
+Style/ColonMethodCall:
+  Enabled: true
+Style/ColonMethodDefinition:
+  Enabled: true
+Style/CommandLiteral:
+  Enabled: true
+Style/CommentAnnotation:
+  Enabled: true
+# Style/DateTime:
+#   Enabled: true
+Style/DefWithParentheses:
+  Enabled: true
+Style/Dir:
+  Enabled: true
+Style/EachForSimpleLoop:
+  Enabled: true
+Style/EachWithObject:
+  Enabled: true
+Style/EmptyCaseCondition:
+  Enabled: true
+Style/EmptyElse:
+  Enabled: true
+Style/EmptyLambdaParameter:
+  Enabled: true
+Style/EmptyMethod:
+  Enabled: true
+Style/Encoding:
+  Enabled: true
+Style/EndBlock:
+  Enabled: true
+Bundler:
+  Enabled: true
