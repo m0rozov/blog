@@ -7,8 +7,12 @@ module Articles
         rate = article.rates.new
         rate.attributes = rate_params
         Articles::Rates::CreateValidator.check(rate).bind do |new_rate|
-          rate.save!
-          Success(rate)
+          ActiveRecord::Base.transaction do
+            new_rate.save!
+            article.update_columns(rate_sum:   article.rate_sum + new_rate.rate,
+                                   rate_count: article.rate_count + 1)
+          end
+          Success(new_rate)
         end
       end
     end

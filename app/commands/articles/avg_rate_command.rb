@@ -4,11 +4,14 @@ module Articles
   class AvgRateCommand < ApplicationCommand
     def call(article)
       return Failure('Not submitted article') unless article.present?
+      return Success(0) if article.rate_sum.zero?
 
-      avg_rate = Article::Rate.joins(:article)
-                              .where('articles.id = :id', id: article.id)
-                              .average("article_rates.rate")
-      Success(avg_rate)
+      sql = "SELECT cast(rate_sum as float) / rate_count as avg_rate
+             FROM articles
+             WHERE rate_sum > 0 AND rate_count > 0 AND id = 18"
+      result = Article.connection.exec_query(sql)
+
+      Success(result[0] && result[0]["avg_rate"])
     end
   end
 end

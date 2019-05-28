@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_124719) do
   enable_extension "plpgsql"
 
   create_table "article_rates", force: :cascade do |t|
-    t.bigint "article_id"
-    t.integer "rate"
+    t.bigint "article_id", null: false
+    t.integer "rate", null: false
     t.index ["article_id"], name: "index_article_rates_on_article_id"
   end
 
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2019_05_28_124719) do
     t.string "title"
     t.text "text"
     t.inet "ip"
+    t.integer "rate_count", default: 0
+    t.integer "rate_sum", default: 0
+    t.index ["ip"], name: "index_articles_on_ip"
+    t.index ["rate_count"], name: "index_articles_on_rate_count"
+    t.index ["rate_sum"], name: "index_articles_on_rate_sum"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
