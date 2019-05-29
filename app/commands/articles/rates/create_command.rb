@@ -4,6 +4,7 @@ module Articles
   module Rates
     class CreateCommand < ApplicationCommand
       def call(article, rate_params)
+        p rate_params
         return Failure(Blog::ValidationError.new('Not valid article')) unless article.present? && article.class == Article
         return Failure(Blog::ValidationError.new('Not valid rate'))    unless rate_params.present? && rate_params["rate"].to_i > 0
 

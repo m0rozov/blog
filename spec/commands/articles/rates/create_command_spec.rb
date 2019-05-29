@@ -33,7 +33,7 @@ describe Articles::Rates::CreateCommand do
 
   it "should create rate if params are valid" do
     before_rates_count = Article::Rate.count
-    res = Articles::Rates::CreateCommand.new.call(@article, rate: 5)
+    res = Articles::Rates::CreateCommand.new.call(@article, { "rate" => 5 })
 
     expect(res.success?).to be true
     expect(res.value!.class).to be Article::Rate
