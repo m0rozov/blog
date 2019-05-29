@@ -4,7 +4,7 @@
 module Articles
   class TopCommand < ApplicationCommand
     def call(articles_count: nil)
-      unless articles_count.present? && articles_count.class == Integer
+      unless articles_count.present? && articles_count.to_i > 0
         return Failure(Blog::ValidationError.new('Count of top Articles don\'t valid'))
       end
 

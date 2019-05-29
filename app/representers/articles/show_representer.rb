@@ -8,7 +8,7 @@ module Articles
         title:    article.title,
         text:     article.text,
         user_id:  article.user_id,
-        ip:       article.ip
+        ip:       article.ip.to_s
       }
     end
   end
