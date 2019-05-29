@@ -4,7 +4,7 @@ module Articles
   # Command for create Articles
   class CreateCommand < ApplicationCommand
     def call(user, article_params, ip)
-      return Failure('User not found') unless user.present?
+      return Failure(Blog::ValidationError.new('User not found')) unless user.present?
 
       article = user.articles.new
       article.attributes = article_params

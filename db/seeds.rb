@@ -10,7 +10,7 @@ end
   ArticleContext.create_article(
     User.find(Random.new.rand(1..100)),
     {
-      title: Faker::Book.title + Faker::Name.middle_name,
+      title: Faker::Book.title,
       text:  Faker::Lorem.paragraph
     },
     ip_array.sample

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Articles
-  class GetIpWithAnotherUserCommand < ApplicationCommand
+  class GetIpWithDifferentUserCommand < ApplicationCommand
     def call
       ip_with_users_array = Article.joins(:user)
                                    .select(:ip, 'array_agg(DISTINCT users.login)')

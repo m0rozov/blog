@@ -3,7 +3,10 @@
 module Articles
   class AvgRateCommand < ApplicationCommand
     def call(article)
-      return Failure('Not submitted article') unless article.present?
+      unless article.present? && article.class == Article
+        return Failure(Blog::ValidationError.new('Not valid article'))
+      end
+
       return Success(0) if article.rate_sum.zero?
 
       sql = "SELECT cast(rate_sum as float) / rate_count as avg_rate

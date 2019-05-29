@@ -4,6 +4,8 @@ module Articles
   module Rates
     class CreateCommand < ApplicationCommand
       def call(article, rate_params)
+        return Failure(Blog::ValidationError.new('Not valid article')) unless article.present? && article.class == Article
+
         rate = article.rates.new
         rate.attributes = rate_params
         Articles::Rates::CreateValidator.check(rate).bind do |new_rate|

@@ -4,12 +4,14 @@
 module Articles
   class TopCommand < ApplicationCommand
     def call(articles_count: nil)
-      return Failure('Count of top Articles don\'t present') unless articles_count.present?
+      unless articles_count.present? && articles_count.class == Integer
+        return Failure(Blog::ValidationError.new('Count of top Articles don\'t valid'))
+      end
 
-      top_articles = Article.joins(:rates)
-                            .group('articles.id')
-                            .order('AVG(article_rates.rate) DESC')
-                            .limit(articles_count)
+      top_articles = Article.order('CASE
+                                      WHEN rate_count = 0 THEN 0
+                                      WHEN rate_count > 0 THEN cast(rate_sum as float) / rate_count
+                                    END DESC ').limit(articles_count)
 
       Success(top_articles)
     end
