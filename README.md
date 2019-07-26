@@ -1,6 +1,6 @@
 # Blog API 
 
-Simple blog api with dry-monads, representers, commands and blackjack 😎
+Simple blog api with dry-monads, representers, commands
 
 ## API methods 
 ### 1. Articles
